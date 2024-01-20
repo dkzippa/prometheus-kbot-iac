@@ -1,2 +1,2 @@
-# prometheus-kbot-iac
-Terraform IaC for Kbot App using GKE and Flux(helm)
+# Kbot app IaC with Terraform using GKE and Flux(helm)
+
