@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: kbot
+  namespace: kbot-demo
+spec:
+  interval: 1m10s
+  ref:
+    branch: main
+  url: https://github.com/dkzippa/prometheus-kbot
