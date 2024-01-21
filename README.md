@@ -1,15 +1,36 @@
 > ## NOTICE to mentors
-> I've had error with default kind_cluster module and flux `Kubernetes version v1.25.3 does not match >=1.26.0-0`.
+> 1. I've had error with default kind_cluster module and flux `Kubernetes version v1.25.3 does not match >=1.26.0-0`.
 > So I've spent some time and created my own module
 > [github.com/dkzippa/tf-kind-cluster](https://github.com/dkzippa/tf-kind-cluster). 
-> Now it works correctly.
->
+> Now it works correctly in Kind cluster.
+<br/>
+<br/>
+>2. I've had errors with `module.gke_cluster.kubeconfig` var in `tf-fluxcd-bootstrap` module
+> i've tried to fork and modify the module, but had no time enough, so put provider and resource in main module. the temporary kostyl;) 
+> i plan to try to solve the issue with such methods(thou haven't checked them yet):
+> - kubernetes host endpoint connection
+> - null_resource with local-exec and KUBE_CONFIG_PATH var
+><br/>
+><br/> 
+3. Kind cluster was implemented in `dev-local-kind` branch
+GKE cluster was implemented in dev-google-gke
+Both branches are merged into main with PRs. Infracost is run on PRs.
 
+<br/>
+<br/>
+<br/>
 
 # Terraform Flux on Kind cluster
 
 This Terraform module creates Kind culster, deploys Flux on it. 
 Flux deploys Kbot App with Helm and promotions all changes to the same cluster
+
+![Image](assets/drawing_scheme.jpg)
+
+## Terraform Modules used:
+- github.com/den-vasyliev/tf-github-repository
+- github.com/den-vasyliev/tf-google-gke-cluster
+
 
 
 ## Preparation steps:
@@ -60,14 +81,31 @@ Flux deploys Kbot App with Helm and promotions all changes to the same cluster
 
     - check all with `flux logs -f`
 
-    - 
-    
+## Remote cluster in Google GKE 
+- change kind module to gke_cluster module
+- and do the same process again
 
 
+## Additonal info
+
+- GCP CloudShell in local terminal and VSCode:
+
+	- gcloud alpha cloud-shell ssh # ssh keys generated
+		
+	- get connection info
+		- gcloud alpha cloud-shell ssh --dry-run 
+			- add host to .ssh/config to use with your terminal or vscode remote ssh connect
 
 
+	- install `gcloud-shell-zsh` from [https://github.com/Andygol/gcloud-shell-zsh](https://github.com/Andygol/gcloud-shell-zsh)
+		- sh -c "$(curl -fsSL https://raw.githubusercontent.com/Andygol/gcloud-shell-zsh/main/install.sh)"
+		- omz plugin enable docker gcloud kubectl terraform fluxcd
 
-
+	- alias tf='terraform'; 
+		alias k='kubectl';
+		alias kdr='kubectl describe'; 
+		alias ip='ip -c'
+ 
 
 
 # TODO:

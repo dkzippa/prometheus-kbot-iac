@@ -1,25 +1,11 @@
-# provider "kind" {
-# }
-# resource "kind_cluster" "default" {
-#     name = "kbot-tf-flux"
-#     wait_for_ready = true
-#     kind_config {
-#         kind = "Cluster"
-#         api_version = "kind.x-k8s.io/v1alpha4"
-
-#         node {
-#             role = "control-plane"
-#         }
-#         node {
-#             role = "worker"
-#         }
-#     }
-# }
-
-module "kind_cluster" {
-    source                   = "github.com/dkzippa/tf-kind-cluster-custom"
-    cluster_name             = var.CLUSTER_NAME
+module "gke_cluster" {
+    source              = "github.com/den-vasyliev/tf-google-gke-cluster"
+    GOOGLE_REGION       = var.GOOGLE_REGION
+    GOOGLE_PROJECT      = var.GOOGLE_PROJECT
+    GKE_MACHINE_TYPE    = var.GKE_MACHINE_TYPE
+    GKE_NUM_NODES       = 1
 }
+
 
 module "github_repository" {
     source                   = "github.com/den-vasyliev/tf-github-repository"
@@ -30,23 +16,24 @@ module "github_repository" {
     public_key_openssh_title = "flux"
 }
 
-
-# module "kind_cluster" {
-#     source = "github.com/den-vasyliev/tf-kind-cluster"
-# }
-
-module "tf-fluxcd-bootstrap" {
-    source            = "github.com/den-vasyliev/tf-fluxcd-flux-bootstrap"
-    private_key       = module.tls_private_key.private_key_pem
-    github_repository = "${var.GITHUB_OWNER}/${var.FLUX_GITHUB_REPO}"
-    github_token      = var.GITHUB_TOKEN
-    # config_path       = module.kind_cluster.kubeconfig
-    config_path       = "./${var.CLUSTER_NAME}-config"
-}
-
-
 module "tls_private_key" {
-    source = "github.com/den-vasyliev/tf-hashicorp-tls-keys"
+    source      = "github.com/den-vasyliev/tf-hashicorp-tls-keys"
     algorithm   = var.tls-algorithm
 }
 
+provider "flux" {
+  kubernetes = {
+    config_path = module.gke_cluster.kubeconfig
+  }
+  git = {
+    url = "https://github.com/${var.GITHUB_OWNER}/${var.FLUX_GITHUB_REPO}.git"
+    http = {
+      username = "git"
+      password = var.GITHUB_TOKEN
+    }
+  }
+}
+resource "flux_bootstrap_git" "this" {
+    depends_on = [ module.gke_cluster ]
+    path = "clusters"
+}
