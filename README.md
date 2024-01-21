@@ -35,8 +35,10 @@ Flux deploys Kbot App with Helm and promotions all changes to the same cluster
 
 ## Preparation steps:
 - set aliases
-    - `alias k='kubectl'`
-    - `alias tf=terraform`
+	- `alias tf='terraform'`
+	- `alias k='kubectl'`
+	- `alias kdr='kubectl describe'`
+	- `alias ip='ip -c'`
 
 - install fluxcd cli from https://fluxcd.io/flux/cmd/
 
@@ -90,21 +92,17 @@ Flux deploys Kbot App with Helm and promotions all changes to the same cluster
 
 - GCP CloudShell in local terminal and VSCode:
 
-	- gcloud alpha cloud-shell ssh # ssh keys generated
+	- `gcloud alpha cloud-shell ssh` # ssh keys generated
 		
 	- get connection info
-		- gcloud alpha cloud-shell ssh --dry-run 
+		- `gcloud alpha cloud-shell ssh --dry-run`
 			- add host to .ssh/config to use with your terminal or vscode remote ssh connect
 
 
 	- install `gcloud-shell-zsh` from [https://github.com/Andygol/gcloud-shell-zsh](https://github.com/Andygol/gcloud-shell-zsh)
-		- sh -c "$(curl -fsSL https://raw.githubusercontent.com/Andygol/gcloud-shell-zsh/main/install.sh)"
-		- omz plugin enable docker gcloud kubectl terraform fluxcd
+		- `sh -c "$(curl -fsSL https://raw.githubusercontent.com/Andygol/gcloud-shell-zsh/main/install.sh)"`
+		- `omz plugin enable docker gcloud kubectl terraform fluxcd`
 
-	- alias tf='terraform'; 
-		alias k='kubectl';
-		alias kdr='kubectl describe'; 
-		alias ip='ip -c'
  
 
 
