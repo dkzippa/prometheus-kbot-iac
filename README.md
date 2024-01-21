@@ -1,20 +1,18 @@
 > ## NOTICE to mentors
-> 1. I've had error with default kind_cluster module and flux `Kubernetes version v1.25.3 does not match >=1.26.0-0`.
+> - I've had error with default kind_cluster module and flux `Kubernetes version v1.25.3 does not match >=1.26.0-0`.
 > So I've spent some time and created my own module
 > [github.com/dkzippa/tf-kind-cluster](https://github.com/dkzippa/tf-kind-cluster). 
 > Now it works correctly in Kind cluster.
-<br/>
-<br/>
->2. I've had errors with `module.gke_cluster.kubeconfig` var in `tf-fluxcd-bootstrap` module
+> 
+> - I've had errors with `module.gke_cluster.kubeconfig` var in `tf-fluxcd-bootstrap` module
 > i've tried to fork and modify the module, but had no time enough, so put provider and resource in main module. the temporary kostyl;) 
 > i plan to try to solve the issue with such methods(thou haven't checked them yet):
-> - kubernetes host endpoint connection
-> - null_resource with local-exec and KUBE_CONFIG_PATH var
-><br/>
-><br/> 
-3. Kind cluster was implemented in `dev-local-kind` branch
-GKE cluster was implemented in dev-google-gke
-Both branches are merged into main with PRs. Infracost is run on PRs.
+> 	- kubernetes host endpoint connection
+> 	- null_resource with local-exec and KUBE_CONFIG_PATH var
+> 
+> - Kind cluster was implemented in `dev-local-kind` branch
+> GKE cluster was implemented in dev-google-gke
+> Both branches are merged into main with PRs. Infracost is run on PRs.
 
 <br/>
 <br/>
