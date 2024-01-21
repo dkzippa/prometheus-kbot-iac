@@ -16,7 +16,7 @@ variable "GITHUB_TOKEN" {
 
 variable "FLUX_GITHUB_REPO" {
     type = string
-    default = "generated-by-flux-prometheus-kbot"
+    default = "prometheus-kbot-iac-by-fluxcd"
     nullable = false
     description = "Flux infra repo"
 }
@@ -27,8 +27,20 @@ variable "FLUX_GITHUB_TARGET_PATH" {
     description = "Flux manifests subdirectory"
 }
 
-variable "CLUSTER_NAME" {
+variable "GOOGLE_REGION" {
     type        = string
-    default     = "kind-flux-kbot"
-    description = "Cluster name"
+    default     = "europe-central2-b"
+    description = "Google region"
+}
+
+variable "GOOGLE_PROJECT" {
+    type        = string
+    default     = "prometheus-407701"
+    description = "Google project"
+}
+
+variable "GKE_MACHINE_TYPE" {
+    type        = string
+    default     = "n1-standard-2"
+    description = "Google GKE node vm type"
 }
