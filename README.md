@@ -20,7 +20,7 @@
 <br/>
 <br/>
 
-# Terraform Flux on Kind cluster
+# Terraform Flux on Kind and GKE clusters
 
 This Terraform module creates Kind culster, deploys Flux on it. 
 Flux deploys Kbot App with Helm and promotions all changes to the same cluster
