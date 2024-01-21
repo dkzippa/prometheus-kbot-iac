@@ -4,9 +4,9 @@
 > [github.com/dkzippa/tf-kind-cluster](https://github.com/dkzippa/tf-kind-cluster). 
 > Now it works correctly in Kind cluster.
 > 
-> - I've had errors with `module.gke_cluster.kubeconfig` var in `tf-fluxcd-bootstrap` module
-> i've tried to fork and modify the module, but had no time enough, so put provider and resource in main module. the temporary kostyl;) 
-> i plan to try to solve the issue with such methods(thou haven't checked them yet):
+> - I've had errors with `module.gke_cluster.kubeconfig` var in `tf-fluxcd-bootstrap` module. 
+> I've tried to fork and modify the module, but had no time enough, so put provider and resource in main module. the temporary kostyl;) 
+> I plan to try to solve the issue with such methods(though haven't checked them yet):
 > 	- kubernetes host endpoint connection
 > 	- null_resource with local-exec and KUBE_CONFIG_PATH var
 > 
