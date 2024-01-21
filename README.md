@@ -11,8 +11,10 @@
 > 	- null_resource with local-exec and KUBE_CONFIG_PATH var
 > 
 > - Kind cluster was implemented in `dev-local-kind` branch
-> GKE cluster was implemented in dev-google-gke
-> Both branches are merged into main with PRs. Infracost is run on PRs.
+> GKE cluster was implemented in `dev-google-gke`
+> Both branches are merged into main with PRs.
+> 
+> - Infracost is run on PRs.
 
 <br/>
 <br/>
