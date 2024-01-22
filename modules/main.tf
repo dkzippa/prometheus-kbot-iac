@@ -3,7 +3,7 @@ module "gke_cluster" {
     GOOGLE_REGION       = var.GOOGLE_REGION
     GOOGLE_PROJECT      = var.GOOGLE_PROJECT
     GKE_MACHINE_TYPE    = var.GKE_MACHINE_TYPE
-    GKE_NUM_NODES       = 2
+    GKE_NUM_NODES       = 1
 }
 
 
