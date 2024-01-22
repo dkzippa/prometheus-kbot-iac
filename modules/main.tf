@@ -54,7 +54,7 @@ module "kms" {
   source              = "github.com/den-vasyliev/terraform-google-kms"
   project_id         = var.GOOGLE_PROJECT
   location           = "global"
-  keyring            = "sops-flux"
-  keys               = ["sops-key-flux"]
+  keyring            = "kbot-sops-flux"
+  keys               = ["kbot-sops-key-flux"]
   prevent_destroy    = false
 }
