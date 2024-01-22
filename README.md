@@ -62,24 +62,18 @@ Flux deploys Kbot App with Helm and promotions all changes to the same cluster
     - `flux logs -f`
 
 - add secret to application
-    - `k create secret generic kbot -n kbot-demo --from-literal=token=...`
+    - `k create secret generic kbot -n demo --from-literal=token=...`
 
 - create ns for the app
-    - add ns.yaml to flux repo in clusters/kbot-demo folder
-    ```yaml
-    apiVersion: v1
-    kind: Namespace
-    metadata:
-    name: kbot-demo
-    ```
+    - add ns.yaml to flux repo in clusters/demo folder
     - run reconcile faster than default 10m `flux reconcile source git flux-system`
 
 - create resources Source and Helm Release
-    - `flux create source git kbot --url=https://github.com/dkzippa/prometheus-kbot --branch=main --namespace=kbot-demo --export`
-    - add content to clusters/kbot-demo/kbot-gr.yaml
+    - `flux create source git kbot --url=https://github.com/dkzippa/prometheus-kbot --branch=main --namespace=demo --export`
+    - add content to clusters/demo/kbot-gr.yaml
 
-    - `flux create helmrelease kbot --source=GitRepository/kbot --chart="./helm" --interval=1m --namespace=kbot-demo --export`
-    - add content to clusters/kbot-demo/kbot-hr.yaml
+    - `flux create helmrelease kbot --source=GitRepository/kbot --chart="./helm" --interval=1m --namespace=demo --export`
+    - add content to clusters/demo/kbot-hr.yaml
 
     - check all with `flux logs -f`
 
