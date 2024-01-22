@@ -37,3 +37,7 @@ terraform.rc
 *.lock.hcl
 
 *.tfstate.*
+
+# use encrypted only with SOPS
+secret.yaml 
+secret-enc.yaml 

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-patch
+  namespace: flux-system
+  annotations:
+    iam.gke.io/gcp-service-account: kustomize-controller@prometheus-407701.iam.gserviceaccount.com
