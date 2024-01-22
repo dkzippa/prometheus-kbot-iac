@@ -44,11 +44,10 @@ module "gke-workload-identity" {
   name                = "kustomize-controller"
   namespace           = "flux-system"
   project_id          = var.GOOGLE_PROJECT
-  cluster_name        = module.gke_cluster.name
+  cluster_name        = "main"
   location            = var.GOOGLE_REGION
-  annotate_k8s_sa     = yes
+  annotate_k8s_sa     = true
   roles               = ["roles/cloudkms.cryptoKeyEncrypterDecrypter"]
-  depends_on = [ module.gke_cluster ]
 }
 
 module "kms" {
